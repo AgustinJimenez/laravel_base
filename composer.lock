@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7f1915ec708986f5c88e22e683d74275",
-    "content-hash": "b7904d07d1e1765a0a199aa11d6301a3",
+    "hash": "e8e913c98f6ac9bcb9d7f0c47c401047",
+    "content-hash": "1d38b79b519ad6d05378d6350224b1f7",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -915,6 +915,75 @@
             "time": "2018-01-25 21:31:33"
         },
         {
+            "name": "nwidart/laravel-modules",
+            "version": "2.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nWidart/laravel-modules.git",
+                "reference": "30c1475f99ef8b439a1cf7d8a9c55787c80bbf71"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nWidart/laravel-modules/zipball/30c1475f99ef8b439a1cf7d8a9c55787c80bbf71",
+                "reference": "30c1475f99ef8b439a1cf7d8a9c55787c80bbf71",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.7",
+                "laravel/framework": "5.5.*",
+                "mockery/mockery": "~1.0",
+                "orchestra/testbench": "^3.5",
+                "phpunit/phpunit": "~6.0",
+                "spatie/phpunit-snapshot-assertions": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Nwidart\\Modules\\LaravelModulesServiceProvider"
+                    ],
+                    "aliases": {
+                        "Module": "Nwidart\\Modules\\Facades\\Module"
+                    }
+                },
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nwidart\\Modules\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Widart",
+                    "email": "n.widart@gmail.com",
+                    "homepage": "https://nicolaswidart.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel Module management",
+            "keywords": [
+                "laravel",
+                "module",
+                "modules",
+                "nwidart",
+                "rad"
+            ],
+            "time": "2018-01-13 20:11:46"
+        },
+        {
             "name": "paragonie/random_compat",
             "version": "v2.0.11",
             "source": {
@@ -1257,6 +1326,70 @@
                 "uuid"
             ],
             "time": "2018-01-20 00:28:24"
+        },
+        {
+            "name": "spatie/laravel-permission",
+            "version": "2.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-permission.git",
+                "reference": "4d47ef1644ed451f1ea99d1c44443a3ad9bacfd4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/4d47ef1644ed451f1ea99d1c44443a3ad9bacfd4",
+                "reference": "4d47ef1644ed451f1ea99d1c44443a3ad9bacfd4",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/auth": "~5.3.0|~5.4.0|~5.5.0|~5.6.0",
+                "illuminate/container": "~5.3.0|~5.4.0|~5.5.0|~5.6.0",
+                "illuminate/contracts": "~5.3.0|~5.4.0|~5.5.0|~5.6.0",
+                "illuminate/database": "~5.4.0|~5.5.0|~5.6.0",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.3.0|~3.4.2|^3.5.0",
+                "phpunit/phpunit": "^5.7|6.2|^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\Permission\\PermissionServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Permission\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Permission handling for Laravel 5.4 and up",
+            "homepage": "https://github.com/spatie/laravel-permission",
+            "keywords": [
+                "acl",
+                "laravel",
+                "permission",
+                "security",
+                "spatie"
+            ],
+            "time": "2018-02-07 16:53:52"
         },
         {
             "name": "swiftmailer/swiftmailer",

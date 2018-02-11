@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Asuncion',//'UTC',
 
     /*
     |--------------------------------------------------------------------------
@@ -226,6 +226,11 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'User' => Modules\Users\Entities\User::class,
+        'BaseRepository' => App\Http\Repositories\BaseRepository::class,
+        'AdminController' => App\Http\Controllers\AdminController::class,
+        'UserRepository' => Modules\Users\Http\Repositories\UserRepository::class,
+        'UserControllerRepository' => Modules\Users\Http\Repositories\UserControllerRepository::class,
     ],
 
 ];

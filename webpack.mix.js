@@ -15,19 +15,19 @@ let base_path = './node_modules/';
     mix.scripts
     ([
         base_path + 'jquery/dist/jquery.min.js',
-        base_path + '/jquery-ui-dist/jquery-ui.min.js',
+        base_path + 'jquery-ui-dist/jquery-ui.min.js',
         base_path + 'bootstrap/dist/js/bootstrap.min.js',
         base_path + 'raphael/raphael.min.js',
         base_path + 'morris.js/morris.min.js',
-        base_path + 'jquery-sparkline/dist/jquery.sparkline.min.js',
+        base_path + 'jquery-sparkline/jquery.sparkline.min.js',
         base_path + "admin-lte/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js",
         base_path + "admin-lte/plugins/jvectormap/jquery-jvectormap-world-mill-en.js",
         base_path + "jquery-knob/dist/jquery.knob.min.js",
         base_path + "moment/min/moment.min.js",
         base_path + "bootstrap-daterangepicker/daterangepicker.js",
         base_path + "bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js",
-        base_path + "plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js",
-        base_path + "jquery-slimscroll/jquery.slimscroll.min.js",
+        base_path + "plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js",//buscar
+        base_path + "jquery-slimscroll/jquery.slimscroll.min.js",//buscar
         base_path + 'fastclick/lib/fastclick.js',
         base_path + 'admin-lte/dist/js/adminlte.min.js'
     ], 
@@ -45,6 +45,6 @@ let base_path = './node_modules/';
         base_path + 'bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css',
         base_path + 'bootstrap-daterangepicker/daterangepicker.css',
         base_path + 'admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css',
-        base_path + 'datatables.net-bs/css/dataTables.bootstrap.min.css'
+        base_path + 'datatables.net-bs/css/dataTables.bootstrap.css'
     ], 
     'public/css/admin-lte-resources.css');
