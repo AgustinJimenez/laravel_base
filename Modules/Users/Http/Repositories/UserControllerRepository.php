@@ -1,20 +1,21 @@
 <?php namespace Modules\Users\Http\Repositories;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-
 class UserControllerRepository
 {
-    private $users;
-    public function __construct( \UserRepository $users )
+    private $users_repo;
+    private $roles_repo;
+
+    public function __construct( \UserRepository $users_repo, \RolesRepository $roles_repo )
     {
-        $this->users = $users;
+        $this->users_repo = $users_repo;
+        $this->roles_repo = $roles_repo;
     }
 
     public function index()
     {
-        $users = \User::get();
-        return view('users::index', compact('users'));
+        $users = $this->users_repo->user->get();
+        return view( $this->users_repo->user->view_name_index, compact('users'));
     }
 
     /**
@@ -23,8 +24,11 @@ class UserControllerRepository
      */
     public function create()
     {
-        $user = new \User;
-        return view('users::create', compact('user'));
+        return view( $this->users_repo->user->view_name_create, 
+        [
+            'user' => $this->users_repo->user,
+            'roles' => $this->roles_repo->role->get()
+        ]);
     }
 
     /**
@@ -32,16 +36,21 @@ class UserControllerRepository
      * @param  Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(&$request)
     {
-        $user = new \User;
+        \DB::beginTransaction();
+        
+        $user = $this->users_repo->user->create( $request->only(['name', 'email', 'password']) );
 
-        $results = $this->users->safe_store( $user, $request->all() );
+        if( $request->filled('roles') )
+            $user->assignRole
+            (
+                $this->roles_repo->role->find( array_keys($request->roles) )->pluck('name')->toArray()
+            );
 
-        if( $results['error'] )
-            return redirect()->back()->withInputs()->withError( $results['messages'][0] );
-        else
-            return redirect()->route( $this->users->index_route_name )->withSuccess( $this->users->saved_message );
+        \DB::commit();
+
+        return redirect()->route( $this->users_repo->user->route_name_index )->withSuccess( \Lang::get("users::users.messages.users.created")  );
     }
 
     /**
@@ -50,16 +59,20 @@ class UserControllerRepository
      */
     public function show()
     {
-        return view('users::show');
+        return view( $this->users_repo->user->view_name_show );
     }
 
     /**
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function edit(\User $user)
+    public function edit(&$user)
     {
-        return view('users::edit', compact('user'));
+        return view( $this->users_repo->user->view_name_edit, 
+        [
+            'user' => $user,
+            'roles' => $this->roles_repo->role->get()
+        ]);
     }
 
     /**
@@ -67,31 +80,32 @@ class UserControllerRepository
      * @param  Request $request
      * @return Response
      */
-    public function update(\User $user, Request $request)
+    public function update(&$user, &$request)
     {
-        $results = $this->users->safe_update( $user, $request->all() );
+        \DB::beginTransaction();
 
-        if( $results['error'] )
-            return redirect()->back()->withInputs()->withError( $results['messages'][0] );
-        else
-            return redirect()->route( $this->users->index_route_name )->withSuccess( $this->users->updated_message );
+        $user->update( $request->only(['name', 'email', 'password']) );
+
+        if( $request->filled('roles') )
+            $user->syncRoles
+            (
+                $this->roles_repo->role->find( array_keys($request->roles) )->pluck('name')->toArray()
+            );
+
+        \DB::commit();
+
+        return redirect()->route( $user->route_name_index )->withSuccess( \Lang::get("users::users.messages.users.updated") );
     }
 
     /**
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy(\User $user)
+    public function destroy(&$user)
     {
-        if( $user->id == request()->user()->id )
-            return redirect()->back()->withInputs()->withError( 'Invalid Operation' );
+        $results = $user->delete();
 
-        $results = $this->users->safe_delete( $user );
-
-        if( $results['error'] )
-            return redirect()->back()->withInputs()->withError( $results['messages'][0] );
-        else
-            return redirect()->route( $this->users->index_route_name )->withSuccess( $this->users->deleted_message );
+        return redirect()->route( $user->route_name_index )->withSuccess( \Lang::get("users::users.messages.users.deleted") );
     }
 
 }

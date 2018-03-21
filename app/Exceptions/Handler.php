@@ -4,7 +4,6 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-
 class Handler extends ExceptionHandler
 {
     /**
@@ -48,6 +47,57 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if( $request->wantsJson() or $request->ajax() ) 
+            return $this->renderExceptionAsJson($request, $exception);
+        elseif( $exception instanceof \Illuminate\Database\QueryException )
+            return redirect()->back()->withInput()->withError( $this->getQueryErrorMessageByCode( $exception ) );
+        
         return parent::render($request, $exception);
     }
+
+    protected function renderExceptionAsJson( &$request, &$exception)
+    {
+        if ($exception instanceof \Illuminate\Http\Exceptions\HttpResponseException)
+            return $exception->getResponse();
+        elseif($exception instanceof \Illuminate\Validation\ValidationException)
+            return response()->json
+            ([
+                'error' => true,
+                'messages' => $exception->errors()
+            ], $exception->status);
+        elseif ($exception instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException or $exception instanceof \Illuminate\Database\Eloquent\ModelNotFoundException)
+            return response()->json
+            ([
+                'error' => true,
+                'messages' => ['Not Found']
+            ], 404);
+        elseif( $exception instanceof \Illuminate\Database\QueryException )
+            return response()->json
+            ([
+                'error' => true,
+                'messages' => [$this->getQueryErrorMessageByCode( $exception )  ]
+            ]);
+        
+    }
+
+    protected function getQueryErrorMessageByCode( &$exception )
+	{
+        switch( $exception->getCode() )
+        {
+            case '23000':
+                $message = "DATABASE ERROR 23000: el registro ya esta asociado a otros registros.";
+                break;
+            case '42S02':
+                $message = "DATABASE ERROR 42S02: no se encuentra una de las tablas en la base de datos.";
+                break;
+            default:
+                $message = "Ocurrio un error insesperado de base de datos.";  
+        }
+        return $message .  (
+                                env('APP_DEBUG') ? 
+                                ' -  ' . $exception->getMessage() : 
+                                ''
+                            );
+    }
+
 }

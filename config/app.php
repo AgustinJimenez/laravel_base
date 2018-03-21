@@ -226,11 +226,20 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-        'User' => Modules\Users\Entities\User::class,
         'BaseRepository' => App\Http\Repositories\BaseRepository::class,
         'AdminController' => App\Http\Controllers\AdminController::class,
+        'ErrorsRepository' => App\Http\Repositories\ErrorsRepository::class,
+
+        'User' => Modules\Users\Entities\User::class,
         'UserRepository' => Modules\Users\Http\Repositories\UserRepository::class,
         'UserControllerRepository' => Modules\Users\Http\Repositories\UserControllerRepository::class,
+
+        'RolesRepository' => Modules\Users\Http\Repositories\RolesRepository::class,
+        'RolesControllerRepository' => Modules\Users\Http\Repositories\RolesControllerRepository::class,
+        'Role' => Modules\Users\Entities\Role::class,
+        
+        'Permission' => Modules\Users\Entities\Permission::class,
+        'PermissionsRepository' => Modules\Users\Http\Repositories\PermissionsRepository::class,
     ],
 
 ];

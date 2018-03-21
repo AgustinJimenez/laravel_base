@@ -41,7 +41,10 @@
 -->
 
 <!-- Styles -->
-<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+{{--
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+--}}
 
 @if( env('ADMIN_LTE_ENABLE_BLACK_SKIN') )
     <link href="{{ asset('css/admin-lte-custom-skin.css') }}" rel="stylesheet">

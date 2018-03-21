@@ -1,10 +1,8 @@
-<?php
-
-namespace Modules\Users\Http\Controllers;
+<?php namespace Modules\Users\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-
+use Modules\Users\Http\Requests\RequestCreateUser;
+use Modules\Users\Http\Requests\RequestUpdateUser;
 class UsersController extends \AdminController
 {
     /**
@@ -12,8 +10,10 @@ class UsersController extends \AdminController
      * @return Response
      */
     private $repo;
-    public function __construct( \UserControllerRepository $repo )
+
+    public function __construct( \UserControllerRepository $repo)
     {
+        parent::__construct();
         $this->repo = $repo;
     }
 
@@ -36,7 +36,7 @@ class UsersController extends \AdminController
      * @param  Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(RequestCreateUser $request)
     {
         return $this->repo->store($request);
     }
@@ -45,9 +45,9 @@ class UsersController extends \AdminController
      * Show the specified resource.
      * @return Response
      */
-    public function show()
+    public function show(\User $user)
     {
-        return $this->repo->show();
+        return $this->repo->show($user);
     }
 
     /**
@@ -64,7 +64,7 @@ class UsersController extends \AdminController
      * @param  Request $request
      * @return Response
      */
-    public function update(\User $user, Request $request)
+    public function update(\User $user, RequestUpdateUser $request)
     {
         return $this->repo->update($user, $request);
     }

@@ -10,6 +10,10 @@ let mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+
+//mix.js('resources/assets/js/app.js', 'public/js/admin-lte-resources.js').sass('resources/assets/sass/app.scss', 'public/css/admin-lte-resources.css');
+
+
 let base_path = './node_modules/';
 
     mix.scripts
@@ -29,10 +33,10 @@ let base_path = './node_modules/';
         base_path + "plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js",//buscar
         base_path + "jquery-slimscroll/jquery.slimscroll.min.js",//buscar
         base_path + 'fastclick/lib/fastclick.js',
-        base_path + 'admin-lte/dist/js/adminlte.min.js'
-    ], 
-    'public/js/admin-lte-resources.js'
-    )
+        base_path + 'admin-lte/dist/js/adminlte.min.js',
+        base_path + 'admin-lte/plugins/iCheck/icheck.min.js'
+
+    ], 'public/js/admin-lte-resources.js')
     .styles
     ([
         base_path + 'bootstrap/dist/css/bootstrap.min.css',
@@ -45,6 +49,9 @@ let base_path = './node_modules/';
         base_path + 'bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css',
         base_path + 'bootstrap-daterangepicker/daterangepicker.css',
         base_path + 'admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css',
-        base_path + 'datatables.net-bs/css/dataTables.bootstrap.css'
+        base_path + 'datatables.net-bs/css/dataTables.bootstrap.css',
+        base_path + 'admin-lte/plugins/iCheck/flat/_all.css'
     ], 
-    'public/css/admin-lte-resources.css');
+    'public/css/admin-lte-resources.css')
+    .copy(base_path + 'admin-lte/plugins/iCheck/square/blue.png', 'public/css/blue.png')
+    .copy(base_path + 'admin-lte/plugins/iCheck/square/blue@2x.png', 'public/css/blue@2x.png');

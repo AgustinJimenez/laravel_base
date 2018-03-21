@@ -9,15 +9,7 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="{{ asset('css/admin-lte/bootstrap.min.css')}}">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('css/admin-lte/font-awesome.min.css')}}">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="{{ asset('css/admin-lte/ionicons.min.css')}}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('css/admin-lte/AdminLTE.min.css')}}">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="{{ asset('css/admin-lte/blue.css')}}">
+<link href="{{ asset('css/admin-lte-resources.css') }}" rel="stylesheet">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -89,12 +81,7 @@
 </div>
 <!-- /.login-box -->
 
-<!-- jQuery 3 -->
-<script src="{{ asset('js/admin-lte/jquery.min.js')}}"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="{{ asset('js/admin-lte/bootstrap.min.js')}}"></script>
-<!-- iCheck -->
-<script src="{{ asset('js/admin-lte/icheck.min.js')}}"></script>
+<script src="{{ asset('js/admin-lte-resources.js') }}" type="text/javascript"></script>
 <script>
   $(function () {
     $('input').iCheck({
