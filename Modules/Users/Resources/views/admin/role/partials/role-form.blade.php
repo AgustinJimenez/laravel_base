@@ -1,3 +1,7 @@
+@section('styles')
+    
+@endsection
+
 <div class="row">
     <div class="col-md-2">
         <div class="box box-primary">
@@ -38,12 +42,14 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-12">
-
-                        <ol class="products-list product-list-in-box">
-                            <div class="text-center">
+                    
+                        <div class="text-center">
                                 <span class="btn btn-primary btn-xs" id="check-all-permissions">Check All</span>
                                 <span class="btn btn-primary btn-xs pull-righ" id="uncheck-all-permissions">Uncheck All</span>
                             </div>
+
+                        <ol class="products-list product-list-in-box pre-scrollable">
+                            
                             @foreach($permissions as $permision)
                                 <li class="item">
 
