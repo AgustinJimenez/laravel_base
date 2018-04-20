@@ -13,9 +13,12 @@ class UserHasRoutePermissionMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if( $request->user()->getPermissionsViaRoles()->pluck('name')->contains( $request->route()->getName() ) )
-            return $next($request);
+        if( $user = $request->user() )
+            if( $user->getPermissionsViaRoles()->pluck('name')->contains( $request->route()->getName() ) )
+                return $next($request);
+            else
+                return redirect()->back()->withError( "You haven't permission." );
         else
-            return redirect()->back()->withError( "You haven't permission." );;
+            return redirect()->route("login")->withError( "You haven't session." );;
     }
 }

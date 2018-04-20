@@ -2,7 +2,7 @@
     <!-- Logo -->
     <a href="#" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b class="text-primary">A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>Admin</b><span class="text-primary">LTE</span></span>
     </a>
@@ -19,13 +19,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{ asset('img/logo.png') }}" class="user-image" alt="User Image">
+              <i class="fa fa-fw fa-user fa-lg"></i>
               <span class="hidden-xs">{{ ($auth_user = Auth::user())?$auth_user->name:'' }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{ asset('img/logo.png') }}" class="img-circle" alt="User Image">
+                <i class="fa fa-fw fa-user fa-5x"></i>
                 <p>
                   {{ ($auth_user)?$auth_user->name:'' }}
                 </p>

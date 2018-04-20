@@ -240,6 +240,8 @@ return [
         
         'Permission' => Modules\Users\Entities\Permission::class,
         'PermissionsRepository' => Modules\Users\Http\Repositories\PermissionsRepository::class,
+
+        'Media' => Modules\Media\Entities\Media::class,
     ],
 
 ];
