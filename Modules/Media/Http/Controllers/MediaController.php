@@ -33,7 +33,11 @@ class MediaController extends Controller
      */
     public function store(Request $re)
     {
+        info( $re->all() );
         dd( $re->all() );
+        $media = new \Media;
+        $media->addMediaFromRequest('image')->toMediaCollection('images');
+        return redirect()->route("admin.media.index");
     }
 
     /**

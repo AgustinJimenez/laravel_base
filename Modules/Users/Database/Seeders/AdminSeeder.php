@@ -24,13 +24,14 @@ class AdminSeeder extends Seeder
                 'email' => "admin@admin.com",
                 'password' => 'admin', 
             ]);
+            
             $role = \Role::create
             ([
                 'name' => "admin"
             ]);
             $user->assignRole( $role->name );
             $role->givePermissionTo( $this->permissions_repo->verify_and_get_permissions()->pluck("name")->toArray() );
-
+            dump( "USER===>", $user->toArray(), "ROLE===>", $role->toArray() );
         \DB::commit();
         
     }

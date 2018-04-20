@@ -1,12 +1,13 @@
 
-{!! Form::open(['route'=> 'admin.media.store', 'method' => 'POST', 'files'=>'true', 'id' => 'my-dropzone' , 'class' => 'dropzone']) !!}
-    <div class="dz-message" >
-        <h3>Drop your files here</h3>
-    </div>
-    <div class="dropzone-previews"></div>
-    <button type="submit" class="btn btn-success pull-right" id="submit">Save</button>
-{!! Form::close() !!}
 
+    <form action="{{ route('admin.media.store') }}" method="POST" files="true" id="my-dropzone" class="dropzone">
+        {!! csrf_field() !!}
+        <div class="dz-message" >
+            <h3>Drop your files here</h3>
+        </div>
+        <div class="dropzone-previews"></div>
+        <button type="submit" class="btn btn-success pull-right" id="submit">Save</button>
+    </form>
 
 @section('scripts')
     <script src="{{ asset('js/dropzone.min.js') }}" type="text/javascript"></script>

@@ -15,7 +15,10 @@ class UsersDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        //$this->call(AdminSeeder::class);
+        if( !\User::count() )
+            $this->call(AdminSeeder::class);
+        else
+            dd( "THERE IS ALREADY AN USER" );
 
         Model::reguard();
     }

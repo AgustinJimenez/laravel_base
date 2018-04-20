@@ -102,7 +102,7 @@
     </div>
 
     @if( $user->id )
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="box box-primary with-border collapsed-box">
 
                 <div class="box-header">
@@ -117,7 +117,7 @@
                 <div class="box-body">
                     <div class="col-md-12">
         
-                        <ul class="products-list product-list-in-box">
+                        <ul class="products-list product-list-in-box pre-scrollable">
                             @foreach($user->getPermissionsViaRoles() as $permission)
                                 <li class="item">
 
