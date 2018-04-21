@@ -29,9 +29,9 @@
                     myDropzone.processQueue();
                 });
                 
-                this.on("complete", function(file) 
+                this.on("complete", function(files) 
                 {
-                    myDropzone.removeFile(file);
+                    myDropzone.removeFile(files);
                 });
  
                 this.on("success", 

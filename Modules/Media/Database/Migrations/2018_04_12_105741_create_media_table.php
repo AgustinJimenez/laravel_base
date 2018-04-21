@@ -11,20 +11,29 @@ class CreateMediaTable extends Migration
      */
     public function up()
     {
-        Schema::create( (new \Media)->getTable(), function (Blueprint $table) {
+        Schema::create( (new \Media)->getTable(), function (Blueprint $table) 
+        {
             $table->increments('id');
-            $table->morphs('model');
-            $table->string('collection_name');
-            $table->string('name');
-            $table->string('file_name');
+            $table->nullableMorphs('model');
+            $table->string('collection_name')->nullable();
+            $table->string('name')->nullable();
+            $table->string('file_name')->nullable();
             $table->string('mime_type')->nullable();
-            $table->string('disk');
-            $table->unsignedInteger('size');
-            $table->json('manipulations');
-            $table->json('custom_properties');
-            $table->json('responsive_images');
+            $table->string('disk')->nullable();
+            $table->unsignedInteger('size')->nullable();
+            $table->json('manipulations')->nullable();
+            $table->json('custom_properties')->nullable();
+            $table->json('responsive_images')->nullable();
             $table->unsignedInteger('order_column')->nullable();
             $table->nullableTimestamps();
+            /*
+            $table->string('filename');
+            $table->string('path');
+            $table->string('extension');
+            $table->string('mimetype');
+            $table->string('filesize');
+            $table->integer('folder_id')->unsigned();
+            */
         });
     }
 

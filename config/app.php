@@ -242,6 +242,7 @@ return [
         'PermissionsRepository' => Modules\Users\Http\Repositories\PermissionsRepository::class,
 
         'Media' => Modules\Media\Entities\Media::class,
+        'Imageable' => Modules\Media\Entities\Imageable::class, 
     ],
 
 ];
