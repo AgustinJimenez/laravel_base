@@ -2,8 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
-class TemplatesController extends \AdminController
+use Illuminate\Routing\Controller;
+class TemplatesController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -20,7 +20,9 @@ let base_path = './node_modules/';
         base_path + "jquery-slimscroll/jquery.slimscroll.min.js",//buscar
         base_path + 'fastclick/lib/fastclick.js',
         base_path + 'admin-lte/dist/js/adminlte.min.js',
-        base_path + 'admin-lte/plugins/iCheck/icheck.min.js'
+        base_path + 'admin-lte/plugins/iCheck/icheck.min.js',
+        //base_path + 'datatables.net-bs/js/dataTables.bootstrap.js',
+        base_path + 'datatables.net/js/jquery.dataTables.js'
 
     ], 'public/js/admin-lte-resources.js')
     .styles

@@ -3,7 +3,8 @@
 use Illuminate\Http\Request;
 use Modules\Users\Http\Requests\RequestCreateUser;
 use Modules\Users\Http\Requests\RequestUpdateUser;
-class UsersController extends \AdminController
+use Illuminate\Routing\Controller;
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,6 @@ class UsersController extends \AdminController
 
     public function __construct( \UserControllerRepository $repo)
     {
-        parent::__construct();
         $this->repo = $repo;
     }
 

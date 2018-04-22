@@ -176,7 +176,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
     ],
 
     /*
@@ -227,7 +226,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'BaseRepository' => App\Http\Repositories\BaseRepository::class,
-        'AdminController' => App\Http\Controllers\AdminController::class,
+        //'AdminController' => App\Http\Controllers\AdminController::class,
         'ErrorsRepository' => App\Http\Repositories\ErrorsRepository::class,
 
         'User' => Modules\Users\Entities\User::class,
@@ -242,7 +241,7 @@ return [
         'PermissionsRepository' => Modules\Users\Http\Repositories\PermissionsRepository::class,
 
         'Media' => Modules\Media\Entities\Media::class,
-        'Imageable' => Modules\Media\Entities\Imageable::class, 
+        'Mediable' => Modules\Media\Entities\Mediable::class, 
     ],
 
 ];

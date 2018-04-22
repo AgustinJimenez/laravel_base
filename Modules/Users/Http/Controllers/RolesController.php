@@ -3,8 +3,8 @@
 use Illuminate\Http\Request;
 use Modules\Users\Http\Requests\RequestCreateRole;
 use Modules\Users\Http\Requests\RequestUpdateRole;
-
-class RolesController extends \AdminController
+use Illuminate\Routing\Controller;
+class RolesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,6 @@ class RolesController extends \AdminController
     public $repo;
     public function __construct( \RolesControllerRepository $repo )
     {
-        parent::__construct();
         $this->repo = $repo;
     }
 

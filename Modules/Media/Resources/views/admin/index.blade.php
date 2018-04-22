@@ -49,3 +49,7 @@
         </div>
     </div>
 @endsection
+
+@section('scripts')
+    @include( ($script_dir_path = "media::admin.partials.index.scripts.") . "main", compact('script_dir_path'))
+@endsection

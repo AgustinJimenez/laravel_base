@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => 'web', 'prefix' => 'admin', 'namespace' => 'Modules\Dashboard\Http\Controllers'], function()
+Route::group(['middleware' => ['admin', 'auth'], 'prefix' => 'admin', 'namespace' => 'Modules\Dashboard\Http\Controllers'], function()
 {
     Route::get('/', 
     [

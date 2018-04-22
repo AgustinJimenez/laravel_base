@@ -4,8 +4,8 @@ namespace Modules\Dashboard\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
-class DashboardController extends \AdminController
+use Illuminate\Routing\Controller;
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.

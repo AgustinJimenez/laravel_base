@@ -5,6 +5,7 @@ namespace Modules\Media\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Yajra\Datatables\Datatables;
 
 class MediaController extends Controller
 {
@@ -15,6 +16,29 @@ class MediaController extends Controller
     public function index()
     {
         return view('media::admin.index');
+    }
+
+    public function index_ajax()
+    {
+        return Datatables::of( \Media::query() )
+                ->addColumn('actions', function ($row)
+                {
+                    return '<div class="btn-group">
+                                <a class="btn btn-flat btn-primary" href=""> <i class="fa fa-pencil"></i> </a>
+                                <button class="btn btn-flat btn-danger btn-delete" > <i class="fa fa-trash"></i> </button>
+                            </div>
+                            ';
+                })
+                ->addColumn('thumbnail', function ($row)
+                {
+                    return '<img src="' . $row->getUrl() . '">';
+                })
+                ->setRowClass( function ($tabla) 
+                { 
+                    return "text-center"; 
+                })
+                ->rawColumns(['actions', 'thumbnail'])
+                ->make(true);
     }
 
     /**
@@ -36,9 +60,8 @@ class MediaController extends Controller
         if( $re->has('file') )
             foreach ($re->file as $file) 
                 if( $file->isValid() )
-                {
-                    \Imageable( storage_path("app/".$file->store('public')) )->toMediaCollection("public");
-                }
+                    \MediaUploader::fromSource( $file )->upload();
+                
         
         return response()->json([ 'error' => false]);
     }

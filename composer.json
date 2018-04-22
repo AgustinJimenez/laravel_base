@@ -10,8 +10,9 @@
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
         "nwidart/laravel-modules": "^3.2",
-        "spatie/laravel-medialibrary": "^7.0.0",
-        "spatie/laravel-permission": "^2.11"
+        "plank/laravel-mediable": "^2.6",
+        "spatie/laravel-permission": "^2.11",
+        "yajra/laravel-datatables": "^1.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

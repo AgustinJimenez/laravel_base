@@ -1,17 +1,16 @@
 
 
-    <form action="{{ route('admin.media.store') }}" method="POST" files="true" id="my-dropzone" class="dropzone">
-        {!! csrf_field() !!}
-        <div class="dz-message" >
-            <h3>Drop your files here</h3>
-        </div>
-        <div class="dropzone-previews"></div>
-        <button type="submit" class="btn btn-success pull-right" id="submit">Save</button>
-    </form>
+<form action="{{ route('admin.media.store') }}" method="POST" files="true" id="my-dropzone" class="dropzone">
+    {!! csrf_field() !!}
+    <div class="dz-message" >
+        <h3>Drop your files here</h3>
+    </div>
+    <div class="dropzone-previews"></div>
+    <button type="submit" class="btn btn-success pull-right" id="submit">Save</button>
+</form>
 
-@section('scripts')
     <script src="{{ asset('js/dropzone.min.js') }}" type="text/javascript"></script>
-    <script type="text/javascript">
+    <script type="text/javascript" defer>
         Dropzone.options.myDropzone = 
         {
             autoProcessQueue: false,
@@ -32,6 +31,7 @@
                 this.on("complete", function(files) 
                 {
                     myDropzone.removeFile(files);
+                    DATATABLE_TABLE.draw();
                 });
  
                 this.on("success", 
@@ -40,4 +40,3 @@
             }
         };
     </script>
-@endsection
