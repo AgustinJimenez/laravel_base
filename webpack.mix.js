@@ -22,9 +22,13 @@ let base_path = './node_modules/';
         base_path + 'admin-lte/dist/js/adminlte.min.js',
         base_path + 'admin-lte/plugins/iCheck/icheck.min.js',
         //base_path + 'datatables.net-bs/js/dataTables.bootstrap.js',
-        base_path + 'datatables.net/js/jquery.dataTables.js'
+        base_path + 'datatables.net/js/jquery.dataTables.js',
+        base_path + 'jquery-confirm/js/jquery-confirm.js'
 
     ], 'public/js/admin-lte-resources.js')
+
+    .mix.scripts(['./resources/assets/js/custom.js'], 'public/js/custom.min.js')
+
     .styles
     ([
         base_path + 'bootstrap/dist/css/bootstrap.min.css',
@@ -38,8 +42,11 @@ let base_path = './node_modules/';
         base_path + 'bootstrap-daterangepicker/daterangepicker.css',
         base_path + 'admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css',
         base_path + 'datatables.net-bs/css/dataTables.bootstrap.css',
+        base_path + 'jquery-confirm/css/jquery-confirm.css',
         base_path + 'admin-lte/plugins/iCheck/flat/_all.css'
-    ], 
-    'public/css/admin-lte-resources.css')
+        
+    ], 'public/css/admin-lte-resources.css')
     .copy(base_path + 'admin-lte/plugins/iCheck/square/blue.png', 'public/css/blue.png')
     .copy(base_path + 'admin-lte/plugins/iCheck/square/blue@2x.png', 'public/css/blue@2x.png');
+
+    mix.js('resources/assets/js/app.js', 'public/js/');

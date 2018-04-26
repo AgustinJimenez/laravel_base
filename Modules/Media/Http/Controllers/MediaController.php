@@ -60,15 +60,12 @@ class MediaController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function store(Request/*UploadMediaRequest*/ $re)
+    public function store(UploadMediaRequest $re)
     {
         if( $re->has('file') )
             foreach ($re->file as $file) 
                 if( $file->isValid() )
-                {
                     $this->repo->upload($file)->create_medium_small_thumbnails();
-                }
-                
         
         return response()->json(['error' => false]);
     }
@@ -86,9 +83,9 @@ class MediaController extends Controller
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function edit()
+    public function edit($media_id)
     {
-        return view('media::edit');
+        return response()->json(['error' => false, 'messages' => 'Hello from edit-'.$media_id]);
     }
 
     /**
@@ -104,7 +101,10 @@ class MediaController extends Controller
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    public function destroy($media_id)
     {
+        return response()->json(['error' => false, 'data' => array('media_id' => $media_id) ]);
     }
+
+
 }

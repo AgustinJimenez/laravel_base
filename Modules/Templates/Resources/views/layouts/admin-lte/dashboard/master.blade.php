@@ -13,8 +13,9 @@
 
                 @include('templates::layouts.admin-lte.dashboard.body.main-sidebar')                        
                 
-
-                @include('templates::layouts.admin-lte.dashboard.body.content-wrapper')                        
+                <div class="content-wrapper" id="template-content-container">
+                    @include('templates::layouts.admin-lte.dashboard.body.content-wrapper')       
+                </div>                 
                 
 
                 @include('templates::layouts.admin-lte.dashboard.body.main-footer')                        

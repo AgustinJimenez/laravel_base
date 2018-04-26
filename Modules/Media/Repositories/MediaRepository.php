@@ -26,10 +26,7 @@ class MediaRepository
     public function create_medium_small_thumbnails()
     {
         if( $this->media->is_image )
-        {
-            $this->create_thumbnail();
-            $this->create_thumbnail(180, 100, 'mediumthumb');
-        }
+            $this->create_thumbnail()->create_thumbnail(180, 100, 'mediumthumb');
     }
 
     public function upload(&$file)
@@ -46,6 +43,7 @@ class MediaRepository
 		    $constraint->aspectRatio();
         })
         ->save( $this->media->get_full_thumbnail_path($sufix), 60 );
+        return $this;
     }
 
 }

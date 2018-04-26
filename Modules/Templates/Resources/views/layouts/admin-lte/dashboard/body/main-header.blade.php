@@ -15,7 +15,17 @@
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-
+          <li>
+            <a href="#" id="template-back-button">
+              <i class="fa fa-arrow-left fa-1x" aria-hidden="true"></i>
+            </a>
+          </li>
+          
+          <li>
+            <a href="#" id="template-refresh-button">
+              <i class="fa fa-refresh fa-1x" aria-hidden="true"></i>
+            </a>
+          </li>
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">

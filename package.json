@@ -25,6 +25,7 @@
         "gulp-minify-css": "^1.2.4",
         "gulp-strip-comments": "^2.5.2",
         "gulp-uglify": "^3.0.0",
+        "jquery-confirm": "^3.3.2",
         "jquery-ui-dist": "^1.12.1",
         "jvectormap": "^2.0.4",
         "strip-css-comments": "^3.0.0"
