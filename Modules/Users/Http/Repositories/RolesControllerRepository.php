@@ -96,7 +96,12 @@ class RolesControllerRepository
      */
     public function destroy(&$role)
     {
+        \DB::beginTransaction();
+
         $role->delete();
+
+        \DB::commit();
+
         return redirect()->route( $this->roles_repo->role->route_name_index )->withSuccess( \Lang::get("users::users.messages.roles.deleted") );
     }
 

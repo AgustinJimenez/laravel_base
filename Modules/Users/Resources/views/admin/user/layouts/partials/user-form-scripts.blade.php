@@ -1,7 +1,10 @@
 <script type="text/javascript" defer>
-$('input').iCheck({
-    checkboxClass: 'icheckbox_flat-blue',
-    radioClass: 'iradio_flat-blue',
-    increaseArea: '60%' // optional
+  
+  $(".box-tools.pull-right").click(function()
+  {
+      $(this).find("i").toggleClass("fa-plus fa-minus");
+      $(this).find(".box-body").toggle();
   });
+  
+
 </script>

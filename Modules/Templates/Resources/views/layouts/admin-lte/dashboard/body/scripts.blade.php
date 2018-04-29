@@ -15,19 +15,13 @@
 
 <script type="text/javascript" defer>
 
-  var aplication = new App('{{ csrf_token() }}', true);
+  var app = new App({csrf_token:'{{ csrf_token() }}'});
 /*
   aplication.http( "{{ route('admin.media.edit', [1]) }}", function impresion()
   {
     console.log("IMPRESION===>", aplication.response);
   });
 */
-  
-
-</script>
-
-<script type="text/javascript">
-  //disable alll autocompletes
   $("input").each(function()
   {
     $(this).attr("autocomplete", "off");

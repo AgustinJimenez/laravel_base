@@ -52,7 +52,7 @@
                                         <div class="btn-group">
                                             <a href="{{ $role->route_edit }}" class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></a>
 
-                                            <button href="{{ $role->route_delete }}" onClick="open_generic_modal( $(this), 'delete', 'CONFIRMACION', 'DESEA ELIMINAR ESTE REGISTRO?' )" class="btn btn-danger btn-flat"><i class="fa fa-trash"></i></button>
+                                            <button onClick="app.actions.delete_ajax('{{ $role->route_delete }}')" class="btn btn-danger btn-flat"><i class="fa fa-trash"></i></button>
 
                                         </div>
                                     </td>

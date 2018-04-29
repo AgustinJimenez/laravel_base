@@ -57,26 +57,38 @@ class Handler extends ExceptionHandler
 
     protected function renderExceptionAsJson( &$request, &$exception)
     {
+
         if ($exception instanceof \Illuminate\Http\Exceptions\HttpResponseException)
             return $exception->getResponse();
-        elseif($exception instanceof \Illuminate\Validation\ValidationException)
+
+
+        else if($exception instanceof \Illuminate\Validation\ValidationException)
+        
             return response()->json
             ([
                 'error' => true,
                 'messages' => $exception->errors()
             ], $exception->status);
-        elseif ($exception instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException or $exception instanceof \Illuminate\Database\Eloquent\ModelNotFoundException)
+        
+        
+
+        else if ($exception instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException or $exception instanceof \Illuminate\Database\Eloquent\ModelNotFoundException)
             return response()->json
             ([
                 'error' => true,
-                'messages' => ['Not Found']
+                'messages' => 'Not Found'
             ], 404);
-        elseif( $exception instanceof \Illuminate\Database\QueryException )
+
+
+        else if( $exception instanceof \Illuminate\Database\QueryException )
+        {
+            \DB::rollback();
             return response()->json
             ([
                 'error' => true,
-                'messages' => [$this->getQueryErrorMessageByCode( $exception )  ]
+                'messages' => $this->getQueryErrorMessageByCode( $exception )  
             ]);
+        }
         
     }
 

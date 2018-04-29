@@ -1,6 +1,3 @@
-@section('styles')
-    
-@endsection
 
 <div class="row">
     <div class="col-md-2">
@@ -73,8 +70,5 @@
 
 </div>
 
+@include("users::admin.role.partials.role-form-scripts")
 
-
-@section('scripts')
-    @include("users::admin.role.partials.role-form-scripts")
-@endsection
