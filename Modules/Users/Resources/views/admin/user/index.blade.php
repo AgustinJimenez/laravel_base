@@ -53,7 +53,7 @@
                                         <div class="btn-group">
                                             <a href="{{ $user->route_edit }}" class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></a>
                                             @if( $user->id != request()->user()->id )
-                                                <button href="{{ $user->route_delete }}" onClick="open_generic_modal( $(this), 'delete', 'CONFIRMACION', 'DESEA ELIMINAR ESTE REGISTRO?' )" class="btn btn-danger btn-flat"><i class="fa fa-trash"></i></button>
+                                                <button onClick="app.actions.delete_ajax('{{ $user->route_delete }}')"  class="btn btn-danger btn-flat"><i class="fa fa-trash"></i></button>
                                             @endif
                                         </div>
                                     </td>

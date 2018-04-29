@@ -21,30 +21,21 @@ function App
     app.visited_urls = [];
     app.params = {}
 
-    app.visited_urls.get_last_url_visited = function()
+    app.visited_urls.get_last_url_visited = () => app.visited_urls.slice(-1)[0]
+    /*
     {
-        //if( app.debug )
-            //console.log("LAST URL=", app.visited_urls.slice(-1)[0]);
+        if( app.debug )
+            console.log("LAST URL=", app.visited_urls.slice(-1)[0]);
 
         return app.visited_urls.slice(-1)[0];
     };
+    */
 
-    app.buttons.refresh.show_reload_animation = function()
-    {
-        app.buttons.refresh.children("i").addClass('fa-spin');
-    };
+    app.buttons.refresh.show_reload_animation = () => app.buttons.refresh.children("i").addClass('fa-spin');
+    app.buttons.refresh.stop_reload_animation = () => app.buttons.refresh.children("i").removeClass('fa-spin');
+    app.visited_urls.has_urls = () => app.visited_urls.length > 1;
 
-    app.buttons.refresh.stop_reload_animation = function()
-    {
-        app.buttons.refresh.children("i").removeClass('fa-spin');
-    };
-
-    app.visited_urls.has_urls = function()
-    {
-        return app.visited_urls.length > 1;
-    };
-
-    app.visited_urls.add_visited_url = function(url)
+    app.visited_urls.add_visited_url = url =>
     {
 
         if( url !== app.visited_urls.get_last_url_visited() )
@@ -59,29 +50,26 @@ function App
 
     app.visited_urls.add_visited_url( window.location.href );
 
-    app.alert = function(message, type = 'red')
-    {
-        $.alert
-        ({
-            title: 'AVISO',
-            content: '<h4>'+message+"</h4>",
-            type: type,// 'blue', 'red'
-            backgroundDismiss: true
-        });
-    };
+    app.alert = (message, type = 'red') => $.alert
+    ({
+        title: 'AVISO',
+        content: '<h4>'+message+"</h4>",
+        type: type,// 'blue', 'red'
+        backgroundDismiss: true
+    });
 
-    app.confirm = function
+    app.confirm =
     ( 
         content = "", 
         type = 'blue', 
-        accept_callback = (function(){}), 
-        cancel_callback  = (function(){}), 
+        accept_callback = (() => {}), 
+        cancel_callback  = (() => {}), 
         accept_text = 'OK', 
         cancel_text = 'CERRAR',
         accept_btn_class = 'btn-default', 
         cancel_btn_class = 'btn-default', 
         title = 'CONFIRMACIÓN' 
-    )
+    ) =>
     {
         if( app.debug )
             console.log('provider_confirm(', content, type, accept_callback, cancel_callback, accept_text, cancel_text, accept_btn_class, cancel_btn_class, title)
@@ -111,7 +99,7 @@ function App
 
     };
 
-    app.response_error_handler = function(type = "default")
+    app.response_error_handler = (type = "default") =>
     {
         switch(type)
         {
@@ -144,7 +132,7 @@ function App
         
     }
 
-    app.http = function(  url = null, callback = (function(){}), params = {}, type = 'GET', headers = {} )
+    app.http = (  url = null, callback = null, params = {}, type = 'GET', headers = {} ) =>
     {
         type = type.toUpperCase();
 
@@ -158,7 +146,7 @@ function App
         }
     
         if( app.debug )
-            console.log("HTTP SENDING===>", 'type=',type, 'headers=', headers,'url=',  url,'params=', params);
+            console.log("HTTP SENDING===>", 'type=',type, 'headers=', headers,'url=',  url,'params=', params, "callback=", callback);
 
         app.buttons.refresh.show_reload_animation();
 
@@ -168,7 +156,7 @@ function App
             headers: headers,
             url: url,
             data: params,
-            success: function(data, textStatus, jQxhr) 
+            success: (data, textStatus, jQxhr) =>
             {
                 app.response = data;
 
@@ -187,7 +175,7 @@ function App
                 else
                     app.actions.refresh_page();
             },
-            error: function(jqXhr, textStatus, errorThrown) 
+            error: (jqXhr, textStatus, errorThrown) =>
             {
                 app.response = jqXhr.responseJSON;
                 app.response_error_handler();
@@ -216,12 +204,9 @@ function App
 
     });
 
-    app.buttons.refresh.click(function(event)
-    {
-        app.http( app.visited_urls.get_last_url_visited(), app.actions.refresh_content );
-    });
+    app.buttons.refresh.click( event => app.http( app.visited_urls.get_last_url_visited(), app.actions.refresh_content ) );
     
-    app.buttons.back.click(function(event)
+    app.buttons.back.click( event =>
     {
         app.visited_urls.pop();
         app.http( app.visited_urls.get_last_url_visited(), app.actions.refresh_content );
@@ -229,11 +214,8 @@ function App
 
     app.actions = 
     {
-        delete_ajax: function(route)
-        {
-            app.confirm( "Desea eliminar el registro?", "red", (function(){app.http(  route, (()=>{}), {}, 'DELETE' )}))
-        },
-        refresh_content: function()
+        delete_ajax: route => app.confirm( "Desea eliminar el registro?", "red", (() => {app.http(  route, null, {}, 'DELETE' )})),
+        refresh_content: () =>
         {
             app.template_content_container.stop().html( app.response );
             $("input[type=text]").each(function()
@@ -242,12 +224,12 @@ function App
             });
             $('input').iCheck
             ({
-            checkboxClass: 'icheckbox_flat-blue',
-            radioClass: 'iradio_flat-blue',
-            increaseArea: '60%' // optional
+                checkboxClass: 'icheckbox_flat-blue',
+                radioClass: 'iradio_flat-blue',
+                increaseArea: '60%' // optional
             });
         },
-        refresh_page: function()
+        refresh_page: () =>
         {
             let last_url = app.visited_urls.get_last_url_visited();
 
@@ -269,31 +251,8 @@ function App
         app.http( $(this).attr('action'), app.actions.refresh_content , app.params, $(this).attr("method") );
     });
 
-    document.onkeydown = function(e)
+    document.onkeydown = (e = window.event) =>
     {
-        e = e || window.event;
-        /*
-        if (e.keyCode == 38) 
-        {
-            // up arrow
-        }
-        else if (e.keyCode == 40) 
-        {
-            // down arrow
-        }
-        else if (e.keyCode == 37) 
-        {
-            //left_arrow_was_clicked();
-        }
-        else if (e.keyCode == 39) 
-        {
-        // right arrow
-        }
-        else if (e.keyCode == 13) 
-        {
-            //enter_was_clicked();
-        }
-        */
         if (e.keyCode == 116) 
         {
             e.preventDefault();
