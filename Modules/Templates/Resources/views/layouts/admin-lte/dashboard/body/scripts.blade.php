@@ -12,7 +12,7 @@
 <!-- Scripts -->
 <script src="{{ asset('js/admin-lte-resources.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/custom.min.js') }}" type="text/javascript"></script>
-
+<script src="{{ asset('js/dropzone.min.js') }}" type="text/javascript"></script>
 <script type="text/javascript" defer>
 
   var app = new App({csrf_token:'{{ csrf_token() }}'});

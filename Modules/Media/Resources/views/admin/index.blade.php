@@ -48,8 +48,15 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('scripts')
-    @include( ($script_dir_path = "media::admin.partials.index.scripts.") . "main", compact('script_dir_path'))
+    <script type="text/javascript">
+        app.set_datatable
+        (
+            '{!! route('admin.media.index_ajax') !!}',
+            [
+                { data: 'thumbnail', name: 'thumbnail', orderable: true, searchable: false},
+                { data: 'filename', name: 'filename', orderable: true, searchable: false},
+                { data: 'actions', name: 'actions', orderable: false, searchable: false}
+            ] 
+        );
+    </script>
 @endsection

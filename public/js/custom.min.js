@@ -9,9 +9,11 @@ function App
 )
 {
     let app = this;
+    $.fn.dataTable.ext.errMode = 'none';
     app.config = config;
     app.debug = debug;
     app.response = null;
+    app.datatables_list = [];
     app.template_content_container = $(template_container_id);
     app.buttons = 
     {
@@ -20,7 +22,7 @@ function App
     };
     app.visited_urls = [];
     app.params = {}
-
+    app.refresh_datatables = () => app.datatables_list.forEach(table => table.draw());
     app.visited_urls.get_last_url_visited = () => app.visited_urls.slice(-1)[0]
     /*
     {
@@ -258,6 +260,91 @@ function App
             e.preventDefault();
             app.actions.refresh_page();
         }
+    };
+
+    app.set_dropzone = (id_selector_submit = "#submit", on_complete = (files => myDropzone.removeFile(files))) => Dropzone.options.myDropzone = 
+    {
+        autoProcessQueue: false,
+        uploadMultiple: true,
+        init: function() 
+        {
+            var submitBtn = document.querySelector(id_selector_submit);
+            myDropzone = this;
+            
+            submitBtn.addEventListener("click", function(e)
+            {
+                e.preventDefault();
+                e.stopPropagation();
+                myDropzone.processQueue();
+            });
+            this.on("complete", on_complete());
+            this.on("success", myDropzone.processQueue.bind(myDropzone));
+        }
+    };
+    
+
+    app.set_datatable = 
+    (
+        source = "", 
+        columns = [{ data: 'actions', name: 'actions', orderable: false, searchable: false}], 
+        request_handler = (request => {}), 
+        response_handler = (response => response.data),
+        selector = '.data-table',
+        order = [[ 0, "asc" ]], 
+        default_datas_count = 10,
+        tool_bar = "<'toolbar'><'row'<'col-xs-12'<'col-xs-6'l><'col-xs-6'p>>r><'row'<'col-xs-12't>><'row'<'col-xs-12'<'col-xs-6'i><'col-xs-6'p>>>"
+    ) => 
+    {
+
+        let new_datatable = $(selector).DataTable
+        ({
+            dom: tool_bar,
+            deferRender: true,
+            processing: true,
+            serverSide: true,
+            order: order,
+            paginate: true,
+            lengthChange: true,
+            iDisplayLength: default_datas_count,
+            filter: true,
+            sort: true,
+            info: true,
+            autoWidth: true,
+            paginate: true,
+            initComplete: (()=>{}),
+            //"drawCallback": reordenar_celdas(),
+            ajax: 
+            {
+                url: source,
+                type: "GET",
+                headers: {'X-CSRF-TOKEN': app.csrf_token },
+                data: request_handler,
+                dataSrc: response_handler,
+            },
+            columns: columns,
+            language: 
+            {
+                processing:     "Procesando...",
+                search:         "Buscar",
+                lengthMenu:     "Mostrar _MENU_ Elementos",
+                info:           "Mostrando de _START_ a _END_ registros de un total de _TOTAL_ registros",
+                //infoEmpty:      "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+                infoFiltered:   ".",
+                infoPostFix:    "",
+                loadingRecords: "Cargando Registros...",
+                zeroRecords:    "No existen registros disponibles",
+                emptyTable:     "No existen registros disponibles",
+                paginate: 
+                {
+                    first:      "Primera",
+                    previous:   "<i class='fa fa-chevron-left'></i>",
+                    next:       "<i class='fa fa-chevron-right'></i>",
+                    last:       "Ultima"
+                }
+            } 
+        });
+
+        app.datatables_list.push(new_datatable);
     }
 
 

@@ -9,13 +9,13 @@
     <button type="submit" class="btn btn-success pull-right" id="submit">Save</button>
 </form>
 
-    <script src="{{ asset('js/dropzone.min.js') }}" type="text/javascript"></script>
-    <script type="text/javascript" defer>
+    <script type="text/javascript">
+        app.set_dropzone();
+        /*
         Dropzone.options.myDropzone = 
         {
             autoProcessQueue: false,
             uploadMultiple: true,
-            
             init: function() 
             {
                 var submitBtn = document.querySelector("#submit");
@@ -39,4 +39,5 @@
                 );
             }
         };
+        */
     </script>
