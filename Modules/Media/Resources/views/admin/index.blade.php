@@ -1,11 +1,10 @@
 @extends('templates::admin-lte-dashboard')
 
 @section('styles')
-    <link href="{{ asset('css/dropzone.min.css') }}" rel="stylesheet">
+    
 @endsection
 
-@section('header')
-    
+@section('header')    
     <h1>
         Media
         <small>Control Panel</small>
@@ -58,5 +57,6 @@
                 { data: 'actions', name: 'actions', orderable: false, searchable: false}
             ] 
         );
+        app.set_dropzone();
     </script>
 @endsection

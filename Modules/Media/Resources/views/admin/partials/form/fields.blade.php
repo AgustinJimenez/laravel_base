@@ -9,7 +9,3 @@
     </div>
   
 </form>
-
-@section('scripts')
-    <script src="{{ asset('js/dropzone.min.js') }}" type="text/javascript"></script>
-@endsection
