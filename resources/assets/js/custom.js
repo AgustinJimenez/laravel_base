@@ -243,14 +243,15 @@ function App
 
     $(document).on('submit', 'form', function(event)
     {
-        event.preventDefault();
-
-        app.params = {};
-
-        for( let field of $(this).serializeArray() )
-            app.params[field.name] = field.value;
-        
-        app.http( $(this).attr('action'), app.actions.refresh_content , app.params, $(this).attr("method") );
+        if( $(this).attr('id') != 'template-form-logout' )
+        {
+            event.preventDefault();
+            app.params = {};
+            for( let field of $(this).serializeArray() )
+                app.params[field.name] = field.value;
+            
+            app.http( $(this).attr('action'), app.actions.refresh_content , app.params, $(this).attr("method") );
+        }
     });
 
     document.onkeydown = (e = window.event) =>
@@ -262,24 +263,31 @@ function App
         }
     };
 
-    app.set_dropzone = ( id_selector_submit = "#submit", on_complete = (files => myDropzone.removeFile(files)) ) => Dropzone.options.myDropzone = 
+    app.set_dropzone = 
+    ( 
+        id_selector_submit = "#btn-submit-dropzone"
+    ) =>  
     {
-        autoProcessQueue: false,
-        uploadMultiple: true,
-        init: function() 
-        {
-            var submitBtn = document.querySelector(id_selector_submit);
-            myDropzone = this;
-            console.log("hello here dropzone");
-            
-            submitBtn.addEventListener("click", function(e)
-            {
-                e.preventDefault();
-                e.stopPropagation();
-                myDropzone.processQueue();
-            });
-            this.on("complete", on_complete());
-            this.on("success", myDropzone.processQueue.bind(myDropzone));
+        console.log("hello dropzone");
+        Dropzone.options.myDropzone =  
+        { 
+            autoProcessQueue: false, 
+            uploadMultiple: true, 
+            init: function()  
+            { 
+                var submitBtn = document.querySelector(id_selector_submit); 
+                myDropzone = this; 
+                 
+                submitBtn.addEventListener("click", function(e) 
+                { 
+                    e.preventDefault(); 
+                    e.stopPropagation(); 
+                    myDropzone.processQueue(); 
+                }); 
+                 
+                this.on("complete", files => myDropzone.removeFile(files)); 
+                this.on("success", () => myDropzone.processQueue.bind(myDropzone) ); 
+            }
         }
     };
     

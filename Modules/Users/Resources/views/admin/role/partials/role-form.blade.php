@@ -41,25 +41,23 @@
                     <div class="col-md-12">
                     
                         <div class="text-center">
-                                <span class="btn btn-primary btn-xs" id="check-all-permissions">Check All</span>
-                                <span class="btn btn-primary btn-xs pull-righ" id="uncheck-all-permissions">Uncheck All</span>
-                            </div>
+                            <span class="btn btn-primary btn-xs" id="check-all-permissions">Check All</span>
+                            <span class="btn btn-primary btn-xs pull-righ" id="uncheck-all-permissions">Uncheck All</span>
+                        </div>
 
-                        <ol class="products-list product-list-in-box pre-scrollable">
+                        <ol class="products-list product-list-in-box" style="max-height: 500px; overflow-y: scroll;">
                             
                             @foreach($permissions as $permision)
                                 <li class="item">
-
                                     <div class="product-img">
                                         <input type="checkbox" name="permissions[{{ $permision->id }}]" {{ ($role->hasPermissionTo($permision->name))?'checked':'' }}>
                                     </div>
-
                                     <div class="product-info product-description text-black">
                                         {{ ($permision->type == "route") ? $permision->altered_name : $permision->name }}
                                     </div>
-                                    
                                 </li>
                             @endforeach
+
                         </ol>
 
                     </div>

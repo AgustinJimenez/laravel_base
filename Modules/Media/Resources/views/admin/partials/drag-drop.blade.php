@@ -4,5 +4,5 @@
         <h3>Drop your files here</h3>
     </div>
     <div class="dropzone-previews"></div>
-    <button type="submit" class="btn btn-success pull-right" id="submit">Save</button>
+    <button type="submit" class="btn btn-success pull-right" id="btn-submit-dropzone">Save</button>
 </form>

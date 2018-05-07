@@ -1,4 +1,4 @@
-@extends('templates::admin-lte-dashboard')
+@extends('templates::admin-lte')
 
 @section('styles')
     
@@ -47,7 +47,8 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
+    <script type="text/javascript"> 
+       
         app.set_datatable
         (
             '{!! route('admin.media.index_ajax') !!}',
@@ -58,5 +59,10 @@
             ] 
         );
         app.set_dropzone();
+
     </script>
+@endsection
+
+@section("scripts")
+    
 @endsection

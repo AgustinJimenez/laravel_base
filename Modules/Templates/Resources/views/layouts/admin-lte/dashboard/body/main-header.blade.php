@@ -25,24 +25,22 @@
           @endif
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-fw fa-user fa-lg"></i>
+              <i class="fa fa-user fa-lg"></i>
               <span class="hidden-xs">{{ ($auth_user = Auth::user())?$auth_user->name:'' }}</span>
             </a>
             <ul class="dropdown-menu">
               <li class="user-header">
-                <i class="fa fa-fw fa-user fa-5x"></i>
+                <i class="fa  fa-user fa-5x text-white"></i>
                 <p>
                   {{ ($auth_user)?$auth_user->name:'' }}
                 </p>
               </li>
-              <li class="user-body">
-              </li>
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-primary btn-flat">Profile</a>
+                  <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <form action="{{ route('logout') }}" method="POST">
+                  <form action="{{ route('logout') }}" method="POST" id="template-form-logout">
                     {!! csrf_field() !!}
                     <button type="submit" class="btn btn-danger btn-flat">Sign out</button>
                   </form>                  

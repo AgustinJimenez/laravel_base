@@ -6,25 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>{{ config('app.name', 'Laravel') }}</title>
-  <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.7 -->
-<link href="{{ asset('css/admin-lte-resources.css') }}" rel="stylesheet">
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-
-  <!-- Google Font -->
+  <link href="{{ asset('css/admin-lte-resources.css') }}" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-  @if( env('ADMIN_LTE_ENABLE_BLACK_SKIN') )
+  
+  @if( config('custom.template.black-skin') )
     <link href="{{ asset('css/admin-lte-custom-skin.css') }}" rel="stylesheet">
   @endif
+
 </head>
-<body class="hold-transition login-page" style="background-color: rgb()">
+<body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
     <a href="../../index2.html"><b>Admin</b>LTE</a>
@@ -82,14 +73,15 @@
 <!-- /.login-box -->
 
 <script src="{{ asset('js/admin-lte-resources.js') }}" type="text/javascript"></script>
-<script>
-  $(function () {
-    $('input').iCheck({
+<script type="text/javascript" charset="utf-8">
+  
+    $('input').iCheck
+    ({
       checkboxClass: 'icheckbox_square-blue',
       radioClass: 'iradio_square-blue',
       increaseArea: '20%' // optional
     });
-  });
+  
 </script>
 </body>
 </html>

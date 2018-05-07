@@ -1,4 +1,4 @@
-@extends('templates::admin-lte-dashboard')
+@extends('templates::admin-lte')
 
 @section('styles')
 

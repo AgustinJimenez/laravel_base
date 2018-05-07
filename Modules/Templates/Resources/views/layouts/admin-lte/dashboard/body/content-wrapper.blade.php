@@ -3,9 +3,9 @@
   @section('header')
   @show
 
-  @include("templates::layouts.admin-lte.dashboard.body.breadcrumb")
+  @include( $template_module_base_path . "body.partials.breadcrumb")
   
-  @include("templates::layouts.admin-lte.dashboard.body.status")
+  @include( $template_module_base_path . "body.partials.status")
 
 </section>
 

@@ -1,5 +1,3 @@
-<script src="{{ asset('js/admin-lte-resources.js') }}" type="text/javascript"></script>
-
 @if( config('custom.template.ajax') )
   <script src="{{ asset('js/custom.min.js') }}" type="text/javascript"></script>
 @endif

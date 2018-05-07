@@ -131,13 +131,27 @@
 
                     </div>
                 </div>
+
             </div>
         </div>
     @endif
-    
+    <script type="text/javascript">
+  
+        $(".btn-box-tool").click(function(event)
+        {
+            event.preventDefault();
+            $(this)
+            .closest(".box")
+            .find("i")
+            .toggleClass("fa-plus fa-minus")
+            .closest(".box")
+            .find(".box-body")
+            .stop()
+            .toggle("fast");
+        });
+        
+      
+      </script>
+
 </div>
     <!--END USER DATAS TAB-->
-
-@section('scripts')
-    @include("users::admin.user.layouts.partials.user-form-scripts")
-@endsection

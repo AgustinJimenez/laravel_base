@@ -1,6 +1,5 @@
-<!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
+
     <section class="sidebar">
 
       <ul class="sidebar-menu" data-widget="tree">
@@ -33,12 +32,8 @@
             <li><a href="{{ route('admin.media.index') }}"><i class="fa fa-users"></i> Media Files </a></li>
           </ul>
         </li>
-        
-
-
-
       </ul>
     
     </section>
-    <!-- /.sidebar -->
+
   </aside>
