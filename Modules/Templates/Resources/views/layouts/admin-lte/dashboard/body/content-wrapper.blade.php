@@ -1,6 +1,5 @@
-<!-- Content Header (Page header) -->
 <section class="content-header">
-
+  
   @section('header')
   @show
 
@@ -10,7 +9,6 @@
 
 </section>
 
-<!-- Main content -->
 <section class="content">
   <div class="row">
     <div class="col-md-12">
@@ -18,4 +16,3 @@
     </div>
   </div>
 </section>
-  <!-- /.content -->

@@ -39,13 +39,8 @@
     @font-face { /*font-family: "Source_Sans_Pro"; */src: url('{{asset("fonts/Source_Sans_Pro/SourceSansPro-SemiBoldItalic.ttf")}}'); }
 </style>
 
-<!-- Styles -->
 
-{{--
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
---}}
-
-@if( env('ADMIN_LTE_ENABLE_BLACK_SKIN') )
+@if( config('custom.template.black-skin') )
     <link href="{{ asset('css/admin-lte-custom-skin.css') }}" rel="stylesheet">
 @endif
 

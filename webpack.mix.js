@@ -48,7 +48,7 @@ let base_path = './node_modules/';
         base_path + 'admin-lte/plugins/iCheck/flat/_all.css'
         
     ], 'public/css/admin-lte-resources.css')
-    .copy(base_path + 'admin-lte/plugins/iCheck/square/blue.png', 'public/css/blue.png')
-    .copy(base_path + 'admin-lte/plugins/iCheck/square/blue@2x.png', 'public/css/blue@2x.png');
+    .copy(base_path + 'icheck/skins/flat/blue.png', 'public/css/blue.png')
+    .copy(base_path + 'icheck/skins/flat/blue@2x.png', 'public/css/blue@2x.png');
 
     mix.js('resources/assets/js/app.js', 'public/js/');

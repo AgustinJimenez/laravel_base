@@ -1,14 +1,20 @@
 <script src="{{ asset('js/admin-lte-resources.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/custom.min.js') }}" type="text/javascript"></script>
+
+@if( config('custom.template.ajax') )
+  <script src="{{ asset('js/custom.min.js') }}" type="text/javascript"></script>
+@endif
 <script type="text/javascript">
- 
-  var app = new App({csrf_token:'{{ csrf_token() }}'});
-  /*
-    aplication.http( "{{ route('admin.media.edit', [1]) }}", function impresion()
-    {
-      console.log("IMPRESION===>", aplication.response);
-    });
-  */
+
+  @if( config('custom.template.ajax') )
+    var app = new App({csrf_token:'{{ csrf_token() }}'});
+  @endif
+
+  $('input').iCheck
+  ({
+    checkboxClass: 'icheckbox_flat-blue',
+    radioClass: 'iradio_flat-blue'
+  });
+
   $("input").each(function()
   {
     $(this).attr("autocomplete", "off");

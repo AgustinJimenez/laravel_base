@@ -262,7 +262,7 @@ function App
         }
     };
 
-    app.set_dropzone = (id_selector_submit = "#submit", on_complete = (files => myDropzone.removeFile(files))) => Dropzone.options.myDropzone = 
+    app.set_dropzone = ( id_selector_submit = "#submit", on_complete = (files => myDropzone.removeFile(files)) ) => Dropzone.options.myDropzone = 
     {
         autoProcessQueue: false,
         uploadMultiple: true,
@@ -270,6 +270,7 @@ function App
         {
             var submitBtn = document.querySelector(id_selector_submit);
             myDropzone = this;
+            console.log("hello here dropzone");
             
             submitBtn.addEventListener("click", function(e)
             {

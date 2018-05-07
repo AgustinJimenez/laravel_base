@@ -1,5 +1,5 @@
 @section('status')
-        
+ 
     @if (session('status'))
     <br>
     <div class="container-fluid">
