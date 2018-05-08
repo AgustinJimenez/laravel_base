@@ -60,8 +60,9 @@ class MediaController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function store(UploadMediaRequest $re)
+    public function store(Request $re)
     {
+
         if( $re->has('file') )
             foreach ($re->file as $file) 
                 if( $file->isValid() )

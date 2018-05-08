@@ -1,8 +1,12 @@
 let mix = require('laravel-mix');
 
 let base_path = './node_modules/';
-
-    mix.scripts
+    mix
+    .copy( base_path + 'icheck/skins/flat/blue.png', 'public/css/admin-lte/blue.png')
+    .copy( base_path + 'icheck/skins/flat/blue@2x.png', 'public/css/admin-lte/blue@2x.png')
+    .babel(['resources/assets/js/app.js'], 'public/js/app.min.js')
+    .sass('resources/assets/sass/app.scss', 'public/css/app.min.css')
+    .scripts
     ([
         base_path + 'jquery/dist/jquery.min.js',
         base_path + 'jquery-ui-dist/jquery-ui.min.js',
@@ -26,14 +30,9 @@ let base_path = './node_modules/';
         base_path + 'datatables.net/js/jquery.dataTables.js',
         base_path + 'jquery-confirm/js/jquery-confirm.js'
 
-    ], 'public/js/admin-lte-resources.js')
-
-    .mix.babel(['./resources/assets/js/custom.js'], 'public/js/custom.min.js')
-
+    ], 'public/js/admin-lte/admin-lte-resources.js')
     .styles
     ([
-        base_path + 'bootstrap/dist/css/bootstrap.min.css',
-        base_path + 'font-awesome/css/font-awesome.min.css',
         base_path + 'ionicons/dist/css/ionicons.min.css',
         base_path + 'admin-lte/dist/css/AdminLTE.min.css',
         base_path + 'admin-lte/dist/css/skins/_all-skins.min.css',
@@ -45,10 +44,9 @@ let base_path = './node_modules/';
         base_path + 'datatables.net-bs/css/dataTables.bootstrap.css',
         base_path + 'jquery-confirm/css/jquery-confirm.css',
         base_path + 'dropzone/dist/min/dropzone.min.css',
-        base_path + 'admin-lte/plugins/iCheck/flat/_all.css'
+        base_path + 'admin-lte/plugins/iCheck/flat/_all.css',
+        'public/css/app.min.css'
         
-    ], 'public/css/admin-lte-resources.css')
-    .copy(base_path + 'icheck/skins/flat/blue.png', 'public/css/blue.png')
-    .copy(base_path + 'icheck/skins/flat/blue@2x.png', 'public/css/blue@2x.png');
+    ], 'public/css/admin-lte/admin-lte-resources.css');
 
-    mix.js('resources/assets/js/app.js', 'public/js/');
+   // mix.js('resources/assets/js/app.js', 'public/js/');

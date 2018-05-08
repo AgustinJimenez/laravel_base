@@ -20,7 +20,9 @@
     },
     "dependencies": {
         "admin-lte": "^2.4.2",
+        "bootstrap-social": "^5.1.1",
         "dropzone": "^5.4.0",
+        "glyphicons": "^0.2.0",
         "gulp": "^3.9.1",
         "gulp-concat": "^2.6.1",
         "gulp-minify-css": "^1.2.4",

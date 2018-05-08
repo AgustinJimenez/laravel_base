@@ -1,9 +1,5 @@
 @extends('templates::admin-lte')
 
-@section('styles')
-    
-@endsection
-
 @section('header')    
     <h1>
         Media
@@ -47,7 +43,7 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript"> 
+    <script type="text/javascript" charset="utf-8"> 
        
         app.set_datatable
         (
@@ -58,11 +54,6 @@
                 { data: 'actions', name: 'actions', orderable: false, searchable: false}
             ] 
         );
-        app.set_dropzone();
 
     </script>
-@endsection
-
-@section("scripts")
-    
 @endsection

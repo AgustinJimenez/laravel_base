@@ -1,10 +1,10 @@
-@if( config('custom.template.ajax') )
-  <script src="{{ asset('js/custom.min.js') }}" type="text/javascript"></script>
-@endif
-<script type="text/javascript">
 
-  @if( config('custom.template.ajax') )
-    var app = new App({csrf_token:'{{ csrf_token() }}'});
+  
+
+<script type="text/javascript" charset="utf-8">
+
+  @if( config('custom.template.dynamic-content') )
+    app.set_dynamic_content();
   @endif
 
   $('input').iCheck
@@ -12,11 +12,6 @@
     checkboxClass: 'icheckbox_flat-blue',
     radioClass: 'iradio_flat-blue'
   });
-
-  $("input").each(function()
-  {
-    $(this).attr("autocomplete", "off");
-  })
 
 </script>
 

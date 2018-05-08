@@ -1,8 +1,8 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/js/admin-lte-resources.js": "/js/admin-lte-resources.js",
-    "/js/custom.min.js": "/js/custom.min.js",
-    "/css/admin-lte-resources.css": "/css/admin-lte-resources.css",
-    "/css/blue.png": "/css/blue.png",
-    "/css/blue@2x.png": "/css/blue@2x.png"
+    "/css/app.min.css": "/css/app.min.css",
+    "/css/admin-lte/blue.png": "/css/admin-lte/blue.png",
+    "/css/admin-lte/blue@2x.png": "/css/admin-lte/blue@2x.png",
+    "/js/app.min.js": "/js/app.min.js",
+    "/js/admin-lte/admin-lte-resources.js": "/js/admin-lte/admin-lte-resources.js",
+    "/css/admin-lte/admin-lte-resources.css": "/css/admin-lte/admin-lte-resources.css"
 }
