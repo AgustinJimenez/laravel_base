@@ -1,11 +1,11 @@
 let mix = require('laravel-mix');
 
 let base_path = './node_modules/';
+    
     mix
     .copy( base_path + 'icheck/skins/flat/blue.png', 'public/css/admin-lte/blue.png')
     .copy( base_path + 'icheck/skins/flat/blue@2x.png', 'public/css/admin-lte/blue@2x.png')
-    .babel(['resources/assets/js/app.js'], 'public/js/app.min.js')
-    .sass('resources/assets/sass/app.scss', 'public/css/app.min.css')
+    .babel(['resources/assets/js/app.js'], 'public/js/admin-lte/app.min.js')
     .scripts
     ([
         base_path + 'jquery/dist/jquery.min.js',
@@ -25,12 +25,14 @@ let base_path = './node_modules/';
         base_path + 'fastclick/lib/fastclick.js',
         base_path + 'admin-lte/dist/js/adminlte.min.js',
         base_path + 'admin-lte/plugins/iCheck/icheck.min.js',
-        //base_path + 'datatables.net-bs/js/dataTables.bootstrap.js',
         base_path + 'dropzone/dist/min/dropzone.min.js',
         base_path + 'datatables.net/js/jquery.dataTables.js',
+        base_path + 'datatables.net-bs/js/dataTables.bootstrap.js',
         base_path + 'jquery-confirm/js/jquery-confirm.js'
 
-    ], 'public/js/admin-lte/admin-lte-resources.js')
+    ], 
+    'public/js/admin-lte/admin-lte-resources.min.js')
+    .sass('resources/assets/sass/app.scss', 'public/css/admin-lte/app.min.css')
     .styles
     ([
         base_path + 'ionicons/dist/css/ionicons.min.css',
@@ -45,8 +47,9 @@ let base_path = './node_modules/';
         base_path + 'jquery-confirm/css/jquery-confirm.css',
         base_path + 'dropzone/dist/min/dropzone.min.css',
         base_path + 'admin-lte/plugins/iCheck/flat/_all.css',
-        'public/css/app.min.css'
+        'public/css/admin-lte/app.min.css'
         
-    ], 'public/css/admin-lte/admin-lte-resources.css');
+    ], 
+    'public/css/admin-lte/admin-lte-resources.min.css');
 
    // mix.js('resources/assets/js/app.js', 'public/js/');

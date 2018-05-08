@@ -7,7 +7,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>{{ config('app.name', 'Laravel') }}</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link href="{{ asset('css/admin-lte/admin-lte-resources.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/admin-lte/admin-lte-resources.min.css') }}" rel="stylesheet">
   
   @if( config('custom.template.black-skin') )
     <link href="{{ asset('css/admin-lte/admin-lte-custom-skin.css') }}" rel="stylesheet">
@@ -71,7 +71,7 @@
 </div>
 <!-- /.login-box -->
 
-<script src="{{ asset('js/admin-lte-resources.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/admin-lte/admin-lte-resources.min.js') }}" type="text/javascript"></script>
 <script type="text/javascript" charset="utf-8">
   
     $('input').iCheck
