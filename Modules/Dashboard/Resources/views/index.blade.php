@@ -49,6 +49,9 @@
             </div>
         </div>
 
+        <div class="col-md-4">
+            <a href="{{ route('admin.logs') }}" class="btn btn-danger">LOGS</a>
+        </div>
         <!--
         <div class="col-md-6">
             <div class="box box-primary">

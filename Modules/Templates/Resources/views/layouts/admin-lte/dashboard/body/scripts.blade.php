@@ -1,5 +1,7 @@
+@section('scripts')
 
   
+@show
 
 <script type="text/javascript" charset="utf-8">
 
@@ -14,8 +16,3 @@
   });
 
 </script>
-
-@section('scripts')
-
-  
-@show

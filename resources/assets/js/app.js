@@ -2,7 +2,7 @@
 function App
 (
     config = {}, 
-    debug = false, 
+    debug = true, 
     template_container_id = "#template-content-container", 
     template_refresh_button_id = "#template-refresh-button", 
     template_back_button_id = "#template-back-button"
@@ -12,7 +12,7 @@ function App
     $.fn.dataTable.ext.errMode = 'none';
     app.config = config;
     app.debug = debug;
-    app.response = null;
+    app.response = '';
     app.datatables_list = [];
     app.template_content_container = $(template_container_id);
     app.buttons = 
@@ -74,7 +74,7 @@ function App
     ) =>
     {
         if( app.debug )
-            console.log('provider_confirm(', content, type, accept_callback, cancel_callback, accept_text, cancel_text, accept_btn_class, cancel_btn_class, title)
+            console.log('provider_confirm(', content, type,/* accept_callback, cancel_callback,*/ accept_text, cancel_text, accept_btn_class, cancel_btn_class, title)
         //'blue', 'red'
         $.confirm
         ({
@@ -107,28 +107,28 @@ function App
         {
             case "default":
 
-                let errors = "";
+                let errors = [];
                 if( app.response != undefined && app.response.error == true )
                     if( app.response.messages != undefined )
                         if( typeof app.response.messages == "string")
-                            app.alert( app.response.messages );
+                            app.toast( app.response.messages );
                         else if( typeof app.response.messages == "object")
                         {
                             for (let key in app.response.messages)
                                 for(let message of app.response.messages[key])
-                                    errors += "\n- "+message;
+                                    errors.push(message);
 
-                            app.alert( errors );   
+                            app.toast( errors );   
                         }
                 else
                     if( app.response != undefined && app.response.messages != undefined )
-                        app.alert(app.response.messages, 'blue');
+                        app.alert(app.response.messages, 'warning');
                     else
-                        app.alert( "Ocurrio un error inesperado." );
+                        app.toast( "Ocurrio un error inesperado." );
 
             break;
             default:
-                app.alert( "Ocurrio un error inesperado." );
+                app.toast( "Ocurrio un error inesperado." );
 
         }
         
@@ -148,7 +148,7 @@ function App
         }
     
         if( app.debug )
-            console.log("HTTP SENDING===>", 'type=',type, 'headers=', headers,'url=',  url,'params=', params, "callback=", callback);
+            console.log("HTTP SENDING===>", 'type=',type, 'headers=', headers,'url=',  url,'params=', params/*, "callback=", callback */);
 
         app.buttons.refresh.show_reload_animation();
 
@@ -160,13 +160,18 @@ function App
             data: params,
             success: (data, textStatus, jQxhr) =>
             {
-                app.response = data;
 
-                if( app.debug )
+                if(data===undefined && app.debug)
+                    app.toast("Resonpones is undefined");
+
+                app.response = data;    
+
+                if( app.debug && false )
                     console.log("GETTING", app.response  );
-                
+               
+                console.log("REPONSE-LENGTH===>", app.response.length  );
                 app.response_error_handler();
-
+                console.log("REPONSE-LENGTH===>", app.response.length  );
                 if(type=="GET")
                     app.visited_urls.add_visited_url(url);
 
@@ -179,12 +184,12 @@ function App
             },
             error: (jqXhr, textStatus, errorThrown) =>
             {
-                app.response = jqXhr.responseJSON;
+                //app.response = jqXhr.responseJSON;
                 app.response_error_handler();
 
                 if( app.debug )
                     console.log( "ERROR: jqXhr ===> ", jqXhr, "ERROR: textStatus ===> ",textStatus, "ERROR: errorThrown ===> ",errorThrown  );
-
+                    console.log("REPONSE-LENGTH===>", app.response.length  );
                 app.buttons.refresh.stop_reload_animation();
             }
         });
@@ -202,12 +207,46 @@ function App
         app.http( app.visited_urls.get_last_url_visited(), app.actions.refresh_content );
     });
 
-    app.actions = 
+    app.toast = 
+    (
+        text, 
+        icon = 'error', 
+        heading = 'Warning', 
+        Loader_bg = '#9EC600', 
+        loader = true, 
+        hideAfter = 5000, 
+        allowToastClose = true, 
+        stack = 4
+    ) =>
+    {
+        $.toast
+        ({
+            heading: heading,
+            position: 'top-right',//bottom-left - bottom-right - bottom-center - top-right - top-left - top-center - mid-center
+            text: text,
+            icon: icon,// success - error - warning - info
+            loader: loader,        // Change it to false to disable loader
+            loaderBg: Loader_bg, // To change the background
+            showHideTransition: 'fade',//slide - fade - plain 
+            hideAfter: hideAfter,// true - false - 5000
+            allowToastClose: allowToastClose,
+            stack: stack //how many maximum toasts you want to show
+        });
+    }
+
+    app.actions =
     {
         delete_ajax: route => app.confirm( "Desea eliminar el registro?", "red", (() => {app.http(  route, null, {}, 'DELETE' )})) ,
         refresh_content: () =>
         {
+            if(debug)
+                console.log("RUNNING REFRESH-CONTENT / CONTENT===>", app.reponse );
+            //REFRESH-CONTENT
+            if( app.response === undefined )
+                app.toast("No content to refreh.");
+
             app.template_content_container.stop().html( app.response );
+
             $("input[type=text]").each(function()
             {
                 $(this).attr("autocomplete", "off").attr("oninvalid", "this.setCustomValidity('Por favor, completar el campo')").attr("oninput", "setCustomValidity('')");
@@ -259,7 +298,7 @@ function App
             let clicked_link = $(this).attr("href");
             
             if(app.debug)
-                console.log("LINK CLICKED!!!", clicked_link);
+                console.log("clicked===>", clicked_link);
 
             
             app.http( clicked_link, app.actions.refresh_content );
@@ -369,5 +408,8 @@ function App
     $("input").each(function()
     {
         $(this).attr("autocomplete", "off");
-    })
+    });
+
+    
+
 }

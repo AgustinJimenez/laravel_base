@@ -7,4 +7,9 @@ Route::group(['middleware' => ['admin', 'auth'], 'prefix' => 'admin', 'namespace
         'as' => 'admin.dashboard.index',
         'uses' => 'DashboardController@index'
     ]);
+    Route::get('logs',
+    [
+        'as' => 'admin.logs',
+        'uses' => '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index'
+    ]);
 });
