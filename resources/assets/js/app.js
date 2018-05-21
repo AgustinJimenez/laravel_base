@@ -3,7 +3,7 @@ function App
 (
     config = {}, 
     debug = true, 
-    template_container_id = "#template-content-container", 
+    template_container_class = ".template-content-container", 
     template_refresh_button_id = "#template-refresh-button", 
     template_back_button_id = "#template-back-button"
 )
@@ -14,7 +14,7 @@ function App
     app.debug = debug;
     app.response = '';
     app.datatables_list = [];
-    app.template_content_container = $(template_container_id);
+    app.get_template_content_container = () => $(template_container_class) ;
     app.buttons = 
     {
         refresh: $(template_refresh_button_id),
@@ -169,18 +169,19 @@ function App
                 if( app.debug && false )
                     console.log("GETTING", app.response  );
                
-                console.log("REPONSE-LENGTH===>", app.response.length  );
                 app.response_error_handler();
-                console.log("REPONSE-LENGTH===>", app.response.length  );
+                
                 if(type=="GET")
                     app.visited_urls.add_visited_url(url);
-
+                    
                 app.buttons.refresh.stop_reload_animation();
                 
                 if(callback!=null)
                     callback();
                 else
                     app.actions.refresh_page();
+
+                //console.log("RESPONSE-LENGTH-HEREE===>", app.response.length, callback  );
             },
             error: (jqXhr, textStatus, errorThrown) =>
             {
@@ -189,7 +190,7 @@ function App
 
                 if( app.debug )
                     console.log( "ERROR: jqXhr ===> ", jqXhr, "ERROR: textStatus ===> ",textStatus, "ERROR: errorThrown ===> ",errorThrown  );
-                    console.log("REPONSE-LENGTH===>", app.response.length  );
+                
                 app.buttons.refresh.stop_reload_animation();
             }
         });
@@ -240,12 +241,12 @@ function App
         refresh_content: () =>
         {
             if(debug)
-                console.log("RUNNING REFRESH-CONTENT / CONTENT===>", app.reponse );
+                console.log( "RUNNING REFRESH-CONTENT / CONTENT===>", app.response.length );
             //REFRESH-CONTENT
             if( app.response === undefined )
                 app.toast("No content to refreh.");
 
-            app.template_content_container.stop().html( app.response );
+            app.get_template_content_container().stop().html( app.response );
 
             $("input[type=text]").each(function()
             {

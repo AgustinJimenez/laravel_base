@@ -31,7 +31,7 @@
       
         </head>
       
-        <body  class="hold-transition {{ config('config.sidebar-type', 'sidebar-mini') }} {{ config('custom.template.skin', 'skin-blue') }}">
+        <body class="hold-transition {{ config('config.sidebar-type', 'sidebar-mini') }} {{ config('custom.template.skin', 'skin-blue') }}">
       
             <div class="wrapper">
 
@@ -40,7 +40,7 @@
 
                 @include( $template_module_base_path . 'body.main-sidebar')                        
                 
-                <div class="content-wrapper" id="template-content-container">
+                <div class="content-wrapper template-content-container">
                     @include( $template_module_base_path . 'body.content-wrapper')       
                 </div>                 
                 
