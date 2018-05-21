@@ -28,7 +28,8 @@ let base_path = './node_modules/';
         base_path + 'dropzone/dist/min/dropzone.min.js',
         base_path + 'datatables.net/js/jquery.dataTables.js',
         base_path + 'datatables.net-bs/js/dataTables.bootstrap.js',
-        base_path + 'jquery-confirm/js/jquery-confirm.js'
+        base_path + 'jquery-confirm/js/jquery-confirm.js',
+        base_path + 'jquery-toast-plugin/dist/jquery.toast.min.js'
 
     ], 
     'public/js/admin-lte/admin-lte-resources.min.js')
@@ -47,6 +48,7 @@ let base_path = './node_modules/';
         base_path + 'jquery-confirm/css/jquery-confirm.css',
         base_path + 'dropzone/dist/min/dropzone.min.css',
         base_path + 'admin-lte/plugins/iCheck/flat/_all.css',
+        base_path + 'jquery-toast-plugin/dist/jquery.toast.min.css',
         'public/css/admin-lte/app.min.css'
         
     ], 
