@@ -2,8 +2,8 @@
 function App
 (
     config = {}, 
-    debug = true, 
-    template_container_class = ".template-content-container", 
+    debug = false, 
+    template_container_id = "#template-content-container", 
     template_refresh_button_id = "#template-refresh-button", 
     template_back_button_id = "#template-back-button"
 )
@@ -14,7 +14,7 @@ function App
     app.debug = debug;
     app.response = '';
     app.datatables_list = [];
-    app.get_template_content_container = () => $(template_container_class) ;
+    app.get_template_content_container = () => $(template_container_id) ;
     app.buttons = 
     {
         refresh: $(template_refresh_button_id),

@@ -11,8 +11,18 @@
 |
 */
 
-Route::get('/', function () 
+Route::get('/', function (\Request $re) 
 {
+    //auth()->guard()->logout();
+
+    //dd( auth()->guard(), auth()->user() );
+    auth()->guard()->attempt(['name' => 'Administrator']);
+    //auth()->guard()->login( \User::first() );
+
+    //session()->regenerate();
+    
+    //dd( auth()->guard(), auth()->user() );
+
     return view('welcome');
 });
 

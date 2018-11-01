@@ -40,7 +40,7 @@
 
                 @include( $template_module_base_path . 'body.main-sidebar')                        
                 
-                <div class="content-wrapper template-content-container">
+                <div class="content-wrapper" id="template-content-container">
                     @include( $template_module_base_path . 'body.content-wrapper')       
                 </div>                 
                 
